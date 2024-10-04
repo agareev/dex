@@ -553,6 +553,7 @@ type Password struct {
 	Hash     []byte `protobuf:"bytes,2,opt,name=hash,proto3" json:"hash,omitempty"`
 	Username string `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
 	UserId   string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Groups   []string `protobuf:"bytes,5,rep,name=groups,proto3" json:"groups,omitempty"`
 }
 
 func (x *Password) Reset() {
@@ -613,6 +614,13 @@ func (x *Password) GetUserId() string {
 		return x.UserId
 	}
 	return ""
+}
+
+func (x *Password) GetGroups() []string {
+	if x != nil {
+		return x.Groups
+	}
+	return nil
 }
 
 // CreatePasswordReq is a request to make a password.
@@ -721,6 +729,7 @@ type UpdatePasswordReq struct {
 	Email       string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	NewHash     []byte `protobuf:"bytes,2,opt,name=new_hash,json=newHash,proto3" json:"new_hash,omitempty"`
 	NewUsername string `protobuf:"bytes,3,opt,name=new_username,json=newUsername,proto3" json:"new_username,omitempty"`
+	NewGroups   []string `protobuf:"bytes,4,rep,name=new_groups,json=newGroups,proto3" json:"new_groups,omitempty"`
 }
 
 func (x *UpdatePasswordReq) Reset() {
@@ -774,6 +783,13 @@ func (x *UpdatePasswordReq) GetNewUsername() string {
 		return x.NewUsername
 	}
 	return ""
+}
+
+func (x *UpdatePasswordReq) GetNewGroups() []string {
+	if x != nil {
+		return x.NewGroups
+	}
+	return nil
 }
 
 // UpdatePasswordResp returns the response from modifying an existing password.
